@@ -1,4 +1,4 @@
-package com.sankiid.dynamic.programming;
+package com.sankiid.dynamic;
 
 public class EditDistance {
 

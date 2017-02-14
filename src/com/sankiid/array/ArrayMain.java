@@ -1,7 +1,8 @@
 package com.sankiid.array;
 
-import com.sankiid.search.sort.Search;
-import com.sankiid.search.sort.Sort;
+
+import com.sankiid.sort.Search;
+import com.sankiid.sort.Sort;
 
 /**
  * Created by sandeep on 12/2/17.
