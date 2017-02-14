@@ -3,7 +3,7 @@ package com.sankiid.sort;
 /**
  * Created by sandeep on 12/2/17.
  */
-public class Search {
+public class SearchUtils {
 
     /**
      * Use it if elements or not ordered.

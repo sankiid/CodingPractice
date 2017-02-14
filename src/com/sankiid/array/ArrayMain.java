@@ -1,8 +1,8 @@
 package com.sankiid.array;
 
 
-import com.sankiid.sort.Search;
-import com.sankiid.sort.Sort;
+import com.sankiid.sort.SearchUtils;
+import com.sankiid.sort.SortUtils;
 
 /**
  * Created by sandeep on 12/2/17.
@@ -15,7 +15,7 @@ public class ArrayMain {
 
     private static void findSum() {
         Integer[] arr = {2, 4, 3, 8, 6, 7, 9, 1};
-        Sort.insertionSort(arr);
+        SortUtils.insertionSort(arr);
         int x = 11;
         boolean sumExist = false;
         for (int i = 0; i < arr.length; ++i) {
@@ -23,7 +23,7 @@ public class ArrayMain {
                 break;
             }
             int r = x - arr[i];
-            sumExist = Search.binarySearch(arr, r) >= 0 ? true: false;
+            sumExist = SearchUtils.binarySearch(arr, r) >= 0 ? true: false;
             if(sumExist) break;
         }
         System.out.print(sumExist);

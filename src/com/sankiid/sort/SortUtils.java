@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * Created by sandeep on 12/2/17.
  */
-public class Sort {
+public class SortUtils {
 
     public static <T extends Comparable<T>> void bubbleSort(T[] ele) {
         int n = ele.length;
