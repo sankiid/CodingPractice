@@ -25,6 +25,8 @@ public class Search {
 
     /**
      * Use it elements are ordered.
+     * http://www.geeksforgeeks.org/binary-search-preferred-ternary-search/
+     *
      * @param arr
      * @param x
      * @param <T>
