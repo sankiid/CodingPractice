@@ -3,8 +3,9 @@ package com.design.elevator;
 /**
  * Created by sandeep on 15/2/17.
  */
-public enum ElevatorDirection {
+public enum Status {
     UP,
     DOWN,
-    STANDING;
+    STANDING,
+    NOT_WORKING;
 }
