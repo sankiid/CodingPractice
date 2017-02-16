@@ -1,6 +1,7 @@
 package com.sankiid.tree;
 
 import java.util.Queue;
+import java.util.Stack;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
@@ -26,36 +27,28 @@ public class SpiralTreeTraversal {
     private static void printSpiral(Node<Integer> root) {
         if (root == null)
             return;
-        Node<Integer> dummy = new Node<Integer>(Integer.MIN_VALUE);
-        Queue<Node<Integer>> queue = new LinkedBlockingQueue<>();
-        queue.add(root);
-        queue.add(dummy);
-        boolean left = true;
-        while (!queue.isEmpty()) {
-            Node<Integer> e = queue.remove();
-            if (e.data != Integer.MIN_VALUE) {
+        Stack<Node<Integer>> stack1 = new Stack<>();
+        Stack<Node<Integer>> stack2 = new Stack<>();
+        stack1.push(root);
+        while (!stack1.isEmpty() || !stack2.isEmpty()) {
+            while (!stack1.isEmpty()) {
+                Node<Integer> e = stack1.pop();
                 System.out.print(e.data + " ");
-                if (left) {
-                    if (e.left != null) {
-                        queue.add(e.left);
-                    }
-                    if (e.right != null) {
-                        queue.add(e.right);
-                    }
-                } else {
-                    if (e.right != null) {
-                        queue.add(e.right);
-                    }
-                    if (e.left != null) {
-                        queue.add(e.left);
-                    }
-                }
-            } else {
-                if (!queue.isEmpty()) {
-                    left = !left;
-                    queue.add(dummy);
+                if (e.right != null)
+                    stack2.push(e.right);
+                if (e.left != null)
+                    stack2.push(e.left);
+            }
+            while (!stack2.isEmpty()) {
+                Node<Integer> e = stack2.pop();
+                System.out.print(e.data + " ");
+                if (e.left != null)
+                    stack1.push(e.left);
+                if (e.right != null) {
+                    stack1.push(e.right);
                 }
             }
         }
     }
+
 }
