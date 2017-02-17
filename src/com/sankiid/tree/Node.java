@@ -12,9 +12,17 @@ public class Node<T> {
 
     public Node() {
     }
+
     public Node(T e) {
         data = e;
         left = null;
         right = null;
+    }
+
+    @Override
+    public String toString() {
+        return "Node{" +
+                "data=" + data +
+                '}';
     }
 }
