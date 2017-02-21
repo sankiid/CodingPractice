@@ -20,12 +20,20 @@ public class CoinChange1 {
         int[] tmp = new int[n + 1];
         tmp[0] = 0;
         for (int i = 1; i <= n; ++i) {
+            tmp[i] = Integer.MAX_VALUE;
+        }
+        for (int i = 1; i <= n; ++i) {
             if (contains(arr, i)) {
                 tmp[i] = 1;
             } else {
                 int min = Integer.MAX_VALUE;
                 for (int j = 0; j < arr.length; ++j) {
-                    min = Math.min(min, 1 + findMinCoinDenominationsToMakeChange(arr, n - arr[j]));
+                    if (n - arr[j] < 0) continue;
+                    if (tmp[n - arr[j]] != Integer.MAX_VALUE) {
+                        min = Math.min(min, 1 + tmp[n - arr[j]]);
+                    } else {
+                        min = Math.min(min, 1 + findMinCoinDenominationsToMakeChange(arr, n - arr[j]));
+                    }
                 }
                 tmp[i] = min;
             }
@@ -35,7 +43,7 @@ public class CoinChange1 {
 
     private static boolean contains(int[] arr, int i) {
         for (int c = 0; c < arr.length; ++c) {
-            if (c == i)
+            if (arr[c] == i)
                 return true;
         }
         return false;
