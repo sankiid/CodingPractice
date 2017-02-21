@@ -31,8 +31,6 @@ public class CoinChange1 {
                     if (n - arr[j] < 0) continue;
                     if (tmp[n - arr[j]] != Integer.MAX_VALUE) {
                         min = Math.min(min, 1 + tmp[n - arr[j]]);
-                    } else {
-                        min = Math.min(min, 1 + findMinCoinDenominationsToMakeChange(arr, n - arr[j]));
                     }
                 }
                 tmp[i] = min;
