@@ -26,5 +26,6 @@ public class DriverClass {
         graph.print();
         graph.dfs(v1);
         graph.bfs(v1);
+        graph.topologicalSort();
     }
 }

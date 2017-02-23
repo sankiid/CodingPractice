@@ -28,9 +28,11 @@ public class Graph {
             edges = new LinkedList<Edge>();
         }
         if (v2 != null) {
+            v2.setInDegree(v2.getInDegree() + 1);
             Edge e = new Edge(v1, v2, weight);
             edges.add(e);
         }
+        v1.setOutDegree(v1.getOutDegree() + 1);
         adjacencyList.put(v1, edges);
     }
 
@@ -92,6 +94,30 @@ public class Graph {
                 for (Edge e : edges) {
                     if (!visited.contains(e.getEndVertex())) {
                         queue.add(e.getEndVertex());
+                    }
+                }
+            }
+        }
+    }
+
+    public void topologicalSort() {
+        System.out.print("---------topological Sort-----------------\n");
+        Stack<Vertex> stack = new Stack<>();
+        for (Map.Entry<Vertex, List<Edge>> entry : adjacencyList.entrySet()) {
+            if (entry.getKey().getInDegree() == 0) {
+                stack.push(entry.getKey());
+            }
+        }
+        while (!stack.isEmpty()) {
+            Vertex v = stack.pop();
+            System.out.println(v);
+            List<Edge> edges = adjacencyList.get(v);
+            if (edges != null && !edges.isEmpty()) {
+                v.setOutDegree(v.getOutDegree() - edges.size());
+                for (Edge e : edges) {
+                    e.getEndVertex().setInDegree(e.getEndVertex().getInDegree() - 1);
+                    if (e.getEndVertex().getInDegree() == 0) {
+                        stack.push(e.getEndVertex());
                     }
                 }
             }

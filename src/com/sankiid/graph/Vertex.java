@@ -9,6 +9,8 @@ public class Vertex {
 
     private String label;
     private int id;
+    private int inDegree;
+    private int outDegree;
 
     public Vertex(int id, String label) {
         this.label = label;
@@ -29,6 +31,22 @@ public class Vertex {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getInDegree() {
+        return inDegree;
+    }
+
+    public void setInDegree(int inDegree) {
+        this.inDegree = inDegree;
+    }
+
+    public int getOutDegree() {
+        return outDegree;
+    }
+
+    public void setOutDegree(int outDegree) {
+        this.outDegree = outDegree;
     }
 
     @Override
