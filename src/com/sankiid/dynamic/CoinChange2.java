@@ -9,13 +9,26 @@ package com.sankiid.dynamic;
 public class CoinChange2 {
 
     public static void main(String[] args) {
-        int arr[] = {1, 2, 3};
-        int c = count(arr, 4);
+        int arr[] = {1, 2, 5, 3, 6};
+//        int c = count(arr, 0, arr.length - 1, 4);
+        long c = countOptimized(arr, 10);
         System.out.print(c);
     }
 
-    private static int count(int[] arr, int m) {
-        int n = arr.length;
-        return 0;
+    private static int count(int[] arr, int i, int j, int n) {
+        if (i > j || n < 0) return 0;
+        if (n == 0) return 1;
+        return count(arr, i, j, n - arr[i]) + count(arr, i + 1, j, n);
     }
+
+    private static long countOptimized(int[] arr, int n) {
+        long[] table = new long[n + 1];
+        table[0] = 1;
+        for (int i = 0; i < arr.length; i++)
+            for (int j = arr[i]; j <= n; j++)
+                table[j] += table[j - arr[i]];
+
+        return table[table.length - 1];
+    }
+
 }
