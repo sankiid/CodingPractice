@@ -1,5 +1,9 @@
 package com.sankiid.tree;
 
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Created by sandeep on 16/2/17.
  */
@@ -7,6 +11,15 @@ package com.sankiid.tree;
 public class MirrorTree {
     static class IntegerWrapper {
         int count = 0;
+    }
+
+    static class NRayNode {
+        Integer data;
+        List<NRayNode> childs;
+
+        public NRayNode(Integer data) {
+            this.data = data;
+        }
     }
 
     public static void main(String[] args) {
@@ -23,6 +36,38 @@ public class MirrorTree {
         System.out.println();
         System.out.println(countLeaf(root, new IntegerWrapper()));
         System.out.println(getLeafCount(root));
+
+        NRayNode n1 = new NRayNode(2);
+        n1.childs = new LinkedList<>();
+        n1.childs.add(new NRayNode(5));
+        n1.childs.add(new NRayNode(6));
+
+        NRayNode n2 = new NRayNode(3);
+        n2.childs = new LinkedList<>();
+        n2.childs.add(new NRayNode(7));
+
+        NRayNode n3 = new NRayNode(4);
+        n3.childs = new LinkedList<>();
+        n3.childs.add(new NRayNode(8));
+        n3.childs.add(new NRayNode(9));
+
+        NRayNode node = new NRayNode(1);
+        node.childs = new LinkedList<>();
+        node.childs.add(n1);
+        node.childs.add(n2);
+        node.childs.add(n3);
+
+        convertTOMirror(node);
+        System.out.println();
+    }
+
+    private static void convertTOMirror(NRayNode node) {
+        if(node == null) return;
+        if(node.childs == null) return;
+        for(NRayNode n : node.childs){
+            convertTOMirror(n);
+        }
+        Collections.reverse(node.childs);
     }
 
     private static int countLeaf(Node<Integer> root, IntegerWrapper integer) {

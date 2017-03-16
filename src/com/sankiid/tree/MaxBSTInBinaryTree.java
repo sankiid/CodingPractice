@@ -14,8 +14,7 @@ public class MaxBSTInBinaryTree {
 		System.out.println(maxSize[0]);
 	}
 
-	private static int maxBst(Node<Integer> root, int[] min, int[] max,
-			boolean[] isBst, int[] maxSize) {
+	private static int maxBst(Node<Integer> root, int[] min, int[] max,	boolean[] isBst, int[] maxSize) {
 		
 		min[0] = Integer.MAX_VALUE;
 		max[0] = Integer.MIN_VALUE;

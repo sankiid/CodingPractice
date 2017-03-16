@@ -37,6 +37,6 @@ public class HeightBalanced {
     private static int getHeight(Node<Integer> root) {
         if (root == null) return 0;
         if (root.left == null && root.right == null) return 1;
-        return Math.max(1 + getHeight(root.left), 1 + getHeight(root.right));
+        return 1 + Math.max(getHeight(root.left), getHeight(root.right));
     }
 }

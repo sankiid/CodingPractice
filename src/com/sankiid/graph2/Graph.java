@@ -40,6 +40,10 @@ public class Graph {
         return null;
     }
 
+    public LinkedList<Integer> getChilds(Integer vertex){
+        return adjList[vertex];
+    }
+
     public int size() {
         return adjList.length;
     }

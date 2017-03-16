@@ -10,8 +10,8 @@ public class KClosest {
     }
 
     private static void findKClosest() {
-        int arr[] = {12, 16, 22, 30, 35, 39, 42,
-                45, 48, 50, 53, 55, 56
+        int arr[] = {
+                12, 16, 22, 30, 35, 39, 42, 45, 48, 50, 53, 55, 56
         };
         int x = 36, k = 4;
         int left = findCrossOverPoint(arr, 0, arr.length - 1, x);

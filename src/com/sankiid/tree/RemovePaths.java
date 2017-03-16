@@ -16,7 +16,7 @@ public class RemovePaths {
 		root.left.right = new Node<>(5);
 		root.right.left = new Node<>(10);
 		print(root);
-		removePath(root, 9, new int[1]);
+		removePath(root, 10, new int[]{0});
 		System.out.println();
 		print(root);
 	}

@@ -19,10 +19,27 @@ public class Node<T> {
         right = null;
     }
 
+    public Node(T e, Node left, Node right) {
+        data = e;
+        this.left = left;
+        this.right = right;
+    }
+
     @Override
     public String toString() {
         return "Node{" +
                 "data=" + data +
                 '}';
+    }
+
+    public void inorder() {
+        inorder(this);
+    }
+
+    private void inorder(Node<T> node) {
+        if (node == null) return;
+        inorder(node.left);
+        System.out.printf("%d ", node.data);
+        inorder(node.right);
     }
 }

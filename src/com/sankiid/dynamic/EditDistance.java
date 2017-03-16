@@ -9,7 +9,7 @@ public class EditDistance {
         System.out.println(minDistance);
     }
 
-    private static int findMinDistance(String str1, String str2) {
+    public static int findMinDistance(String str1, String str2) {
 
         int[][] temp = new int[str1.length() + 1][str2.length() + 1];
         for (int i = 0; i <= str1.length(); ++i) {
@@ -32,7 +32,7 @@ public class EditDistance {
                 }
             }
         }
-        findEditChars(str1, str2, temp);
+        //findEditChars(str1, str2, temp);
         return temp[str1.length()][str2.length()];
     }
 

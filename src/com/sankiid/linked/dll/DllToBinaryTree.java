@@ -25,7 +25,7 @@ public class DllToBinaryTree {
             mid.left.right = null;
         }
         mid.left = convertTOBinaryTree(head);
-        mid.right = convertTOBinaryTree(mid.right);
+        mid.right = convertTOBinaryTree(mid);
         return mid;
     }
 
