@@ -13,7 +13,7 @@ public class SourceWordToDestination {
     public static void main(String[] args) {
         String[] dict = {"BCCI", "AICC", "ICC", "CCI", "MCC", "MCA", "ACC"};
         String source = "AICC";
-        String dest = "MCC";
+        String dest = "MCA";
         int cost = findSourceWordToDestinationWordCost(source, dest, dict);
         System.out.printf("%d", cost);
     }
@@ -42,28 +42,28 @@ public class SourceWordToDestination {
     }
 
     private static int bfs(Graph graph, boolean[] visited, int vertex, int destId) {
-        Queue<Integer> queue = new LinkedList<>();
-        queue.add(vertex);
+        Queue<Integer[]> queue = new LinkedList<Integer[]>();
+        int level = 0;
+        queue.add(new Integer[]{vertex, level});
         visited[vertex] = true;
-        int cost = 0;
-        boolean destFound = false;
+        int cost = -1;
         while (!queue.isEmpty()) {
-            Integer v = queue.poll();
+            Integer[] arr = queue.poll();
+            Integer v = arr[0];
             if (v == destId) {
-                destFound = true;
+                cost = arr[1];
                 break;
             }
-            cost++;
             Iterator<Integer> itr = graph.getChilds(v).iterator();
             while (itr.hasNext()) {
                 Integer w = itr.next();
                 if (!visited[w]) {
                     visited[w] = true;
-                    queue.add(w);
+                    queue.add(new Integer[]{w, arr[1] + 1});
                 }
             }
         }
-        return destFound ? cost : -1;
+        return cost;
     }
 
 }
