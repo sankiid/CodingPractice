@@ -23,8 +23,32 @@ public class LCS {
         if (s1 == null || s2 == null) return null;
         if (s1.intern() == s2.intern()) return s1;
 
-        int [][]tmp = new int[s1.length()][s2.length()];
-        return null;
+        int n = s1.length();
+        int m = s2.length();
+        int[][] tmp = new int[n][m];
+        for (int j = 0; j < n; ++j) {
+            tmp[0][j] = s1.charAt(j) == s2.charAt(0) ? 1 : 0;
+        }
+        for (int i = 0; i < m; ++i) {
+            tmp[i][0] = s1.charAt(0) == s2.charAt(i) ? 1 : 0;
+        }
+        int max = 0;
+        int endingIdx = -1;
+        for (int i = 1; i < m; ++i) {
+            for (int j = 1; j < n; ++j) {
+                if (s1.charAt(j) == s2.charAt(i)) {
+                    tmp[i][j] = tmp[i - 1][j - 1] + 1;
+                    if (max < tmp[i][j]) {
+                        max = tmp[i][j];
+                        endingIdx = i;
+                    }
+                } else {
+                    tmp[i][j] = 0;
+                }
+            }
+        }
+
+        return s2.substring(endingIdx + 1 - max, endingIdx + 1);
     }
 
     public static String getLongestCommonSubsequence(String x, String y) {
