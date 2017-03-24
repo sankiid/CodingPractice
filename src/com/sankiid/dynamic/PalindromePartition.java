@@ -5,7 +5,7 @@ package com.sankiid.dynamic;
  */
 public class PalindromePartition {
     public static void main(String[] args) {
-        String s = "banana";
+        String s = "abaca";
         int partitions = findPartitionNumber(s);
         System.out.print(partitions);
     }
@@ -25,15 +25,25 @@ public class PalindromePartition {
             for (int i = 0; i < s.length() - n + 1; ++i) {
                 int j = i + n - 1;
                 if (s.charAt(i) == s.charAt(j)) {
-                    part[i][j] = true;
+                    part[i][j] = part[i+1][j-1];
                 }
             }
         }
 
         int[] cuts = new int[s.length()];
         for (int i = 0; i < s.length(); ++i) {
-
+            if (part[0][i]) {
+                cuts[i] = 0;
+            } else {
+                int min = Integer.MAX_VALUE;
+                for (int j = 0; j < i; ++j) {
+                    if (part[j + 1][i]) {
+                        min = Math.min(min, cuts[j] + 1);
+                    }
+                }
+                cuts[i] = min;
+            }
         }
-        return -1;
+        return cuts[cuts.length - 1];
     }
 }
