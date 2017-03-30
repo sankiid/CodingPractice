@@ -2,6 +2,13 @@ package com.sankiid.tree;
 
 public class MaxBSTInBinaryTree {
 
+	static class MinMax {
+		int size = 0;
+		boolean bst = true;
+		int min = Integer.MAX_VALUE;
+		int max = Integer.MIN_VALUE;
+	}
+
 	public static void main(String[] args) {
 		Node<Integer> root = new Node<>(6);
 		root.left = new Node<>(3);
@@ -9,43 +16,29 @@ public class MaxBSTInBinaryTree {
 		root.left.left = new Node<>(1);
 		root.left.right = new Node<>(5);
 		root.right.left = new Node<>(4);
-		int[] maxSize = new int[1];
-		maxBst(root, new int[1], new int[1], new boolean[1], maxSize);
-		System.out.println(maxSize[0]);
+		// [size, isBST, min, max]
+		MinMax minMax = maxBst(root);
+		System.out.println(minMax.size);
 	}
 
-	private static int maxBst(Node<Integer> root, int[] min, int[] max,	boolean[] isBst, int[] maxSize) {
-		
-		min[0] = Integer.MAX_VALUE;
-		max[0] = Integer.MIN_VALUE;
-
+	private static MinMax maxBst(Node<Integer> root) {
 		if (root == null) {
-			isBst[0] = true;
-			return 0;
+			return new MinMax();
 		}
+		MinMax left = maxBst(root.left);
+		MinMax right = maxBst(root.right);
 
-		int leftSize = maxBst(root.left, min, max, isBst, maxSize);
-		boolean isLeftValid = isBst[0] && root.data > max[0];
+		MinMax result = new MinMax();
 
-		int tmpMin = min[0] > root.data ? root.data : min[0];
-		int tmpMax = max[0] < root.data ? root.data : max[0];
-
-		int rightSize = maxBst(root.right, min, max, isBst, maxSize);
-		boolean isRightValid = isBst[0] && root.data < min[0];
-
-		min[0] = min[0] < tmpMin ? min[0] : tmpMin;
-		max[0] = max[0] > tmpMax ? max[0] : tmpMax;
-
-		if (isLeftValid && isRightValid) {
-			isBst[0] = true;
-			if (1 + leftSize + rightSize > maxSize[0]) {
-				maxSize[0] = 1 + leftSize + rightSize;
-			}
-			return 1 + leftSize + rightSize;
+		if (!left.bst || !right.bst || root.data < left.max || root.data > right.min) {
+			result.bst = false;
+			result.size = Math.max(left.size, right.size);
+		} else {
+			result.bst = true;
+			result.size = left.size + right.size + 1;
+			result.min = root.left == null ? root.data : left.min;
+			result.max = root.right == null ? root.data : right.max;
 		}
-
-		isBst[0] = false;
-		return -1;
+		return result;
 	}
-
 }
