@@ -10,13 +10,11 @@ public class SerializeDeserialize {
 		root.left.right = new Node<>(12);
 		root.right.left = new Node<>(22);
 		int[] serialize = serialize(root);
-		Node node = deserialize(serialize, new int[] { serialize.length - 1 },
-				Integer.MIN_VALUE, Integer.MAX_VALUE);
+		Node node = deserialize(serialize, new int[] { serialize.length - 1 }, Integer.MIN_VALUE, Integer.MAX_VALUE);
 		System.out.println();
 	}
 
-	private static Node deserialize(int[] serialize, int[] index, int minValue,
-			int maxValue) {
+	private static Node deserialize(int[] serialize, int[] index, int minValue, int maxValue) {
 		if (serialize == null)
 			return null;
 		if (index == null || index[0] < 0)

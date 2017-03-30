@@ -55,10 +55,10 @@ public class RightNeighbour {
             RightNeighbourNode tmp = node.neighbour;
             while (tmp != null) {
                 if (tmp.left != null) {
-                    node.left.neighbour = tmp.left;
+                    node.right.neighbour = tmp.left;
                     break;
                 } else if (tmp.right != null) {
-                    node.left.neighbour = tmp.right;
+                    node.right.neighbour = tmp.right;
                     break;
                 }
                 tmp = tmp.neighbour;
