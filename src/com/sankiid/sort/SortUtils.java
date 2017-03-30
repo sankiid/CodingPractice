@@ -147,10 +147,6 @@ public class SortUtils {
         for (int i = 1; i < range; ++i) {
             count[i] += count[i - 1];
         }
-        for (int i = 0; i < arr.length; ++i) {
-            tmp[count[arr[i]] - 1] = arr[i];
-            --count[arr[i]];
-        }
         for (int i = arr.length - 1; i >= 0; --i) {
             tmp[count[arr[i]] - 1] = arr[i];
             --count[arr[i]];
