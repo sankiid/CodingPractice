@@ -3,73 +3,71 @@ package com;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 /**
  * Created by sankiid on 05-03-2017.
  */
 public class Solution {
-    public static void main(String args[]) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] token = br.readLine().split("[ ]");
-        int n = Integer.parseInt(token[0]);
-        int m = Integer.parseInt(token[1]);
+	public static void main(String args[]) throws Exception {
+		System.out.println(new Solution().convertToTitle(140627));
+	}
 
-        int sum = 0;
-        int[][] mat = new int[n][n];
-        for (int i = 0; i < n; ++i) {
-            token = br.readLine().split("[ ]");
-            for (int j = 0; j < n; ++j) {
-                sum += Integer.parseInt(token[j]);
-                mat[i][j] = 1;
-            }
-        }
+	public String convertToTitle(int a) {
+		LinkedList<Integer> list = new LinkedList<Integer>();
+		while (a > 0) {
+			list.addLast(a % 26);
+			a = a / 26;
+		}
 
-        sum = sum - n * n;
-        int ii = n - 1, jj = n - 1;
-        int line = 2 * (n - 1);
-        while (line >= 0 && sum > 0) {
-            if (line % 2 == 0) {
-                ii = line / 2;
-                jj = line / 2;
-                sum = getAndSetSum(m, sum, mat, ii, jj);
-                ii++;
-                jj--;
-                sum = calculateSum(n, m, sum, mat, ii, jj, line);
-            } else {
-                ii = (line + 1) / 2;
-                jj = line - ii;
-                sum = calculateSum(n, m, sum, mat, ii, jj, line);
-            }
-            line--;
-        }
+		StringBuilder sb = new StringBuilder();
+		for (int j = 0; j < list.size(); ++j) {
+			int n = list.get(j);
+			if (n == 0 && (j + 1) < list.size()) {
+				sb.append('Z');
+				Integer i = list.get(j + 1);
+				int k = j + 1;
+				while (list.get(k).intValue() == 0) {
+					k++;
+				}
+				list.add(k, list.get(k) - 1);
+				list.remove(k + 1);
+				while (k > j + 1) {
+					k--;
+					list.add(k, 25);
+					list.remove(k + 1);
+				}
+			} else if (n != 0) {
+				sb.append((char) ('A' + n - 1));
+			}
+		}
+		return sb.reverse().toString();
+	}
 
-        for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < n; ++j) {
-                System.out.printf("%d ", mat[i][j]);
-            }
-            System.out.println();
-        }
-    }
+	private static int calculateSum(int n, int m, int sum, int[][] mat, int ii, int jj, int line) {
+		while (sum > 0 && (ii < n && jj >= 0 && ii >= 0 && jj < n) && ii + jj == line) {
+			sum = getAndSetSum(m, sum, mat, ii, jj);
+			sum = getAndSetSum(m, sum, mat, jj, ii);
+			ii++;
+			jj--;
+		}
+		return sum;
+	}
 
-    private static int calculateSum(int n, int m, int sum, int[][] mat, int ii, int jj, int line) {
-        while (sum > 0 && (ii < n && jj >= 0 && ii >= 0 && jj < n) && ii + jj == line) {
-            sum = getAndSetSum(m, sum, mat, ii, jj);
-            sum = getAndSetSum(m, sum, mat, jj, ii);
-            ii++;
-            jj--;
-        }
-        return sum;
-    }
-
-    private static int getAndSetSum(int m, int sum, int[][] mat, int ii, int jj) {
-        if (sum <= 0) return 0;
-        if (sum > m - 1) {
-            mat[ii][jj] += m - 1;
-            sum = sum - m + 1;
-        } else {
-            mat[ii][jj] += sum;
-            sum = 0;
-        }
-        return sum;
-    }
+	private static int getAndSetSum(int m, int sum, int[][] mat, int ii, int jj) {
+		if (sum <= 0)
+			return 0;
+		if (sum > m - 1) {
+			mat[ii][jj] += m - 1;
+			sum = sum - m + 1;
+		} else {
+			mat[ii][jj] += sum;
+			sum = 0;
+		}
+		return sum;
+	}
 }

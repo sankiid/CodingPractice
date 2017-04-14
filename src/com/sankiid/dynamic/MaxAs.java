@@ -14,7 +14,7 @@ package com.sankiid.dynamic;
 public class MaxAs {
 
     public static void main(String[] args) {
-        int max = findMaxAs(10);
+        int max = findMaxAs(7);
         System.out.print(max);
     }
 
@@ -35,7 +35,7 @@ public class MaxAs {
                 }
                 multiplier--;
             }
-            maxTmp[j] = currentMax;
+            maxTmp[j] = max;
         }
         return maxTmp[n];
     }

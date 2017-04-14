@@ -29,17 +29,6 @@ public class Graph {
         }
     }
 
-    private Integer getVertex(int v) {
-        if (v < 0 || v >= adjList.length)
-            return null;
-        for (Integer vtx : adjList[v]) {
-            if (vtx.intValue() == v) {
-                return vtx;
-            }
-        }
-        return null;
-    }
-
     public LinkedList<Integer> getChilds(Integer vertex){
         return adjList[vertex];
     }

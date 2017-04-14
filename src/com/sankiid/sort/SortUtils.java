@@ -231,11 +231,12 @@ public class SortUtils {
             max = max < arr[i] ? arr[i] : max;
         }
         for (int i = 1; max / i > 0; i *= 10) {
-            countingSort(arr, 10, i);
+            countingSort2(arr, i);
         }
     }
 
-    private static void countingSort(int[] arr, int range, int exp) {
+    private static void countingSort2(int[] arr, int exp) {
+    	int range = 10;
         int[] tmp = new int[arr.length];
         int[] count = new int[range];
         for (int i = 0; i < arr.length; ++i) {
@@ -244,10 +245,6 @@ public class SortUtils {
         for (int i = 1; i < range; ++i) {
             count[i] += count[i - 1];
         }
-//        for (int i = 0; i < arr.length; ++i) {
-//            tmp[count[(arr[i]/exp)%10] - 1] = arr[i];
-//            --count[(arr[i]/exp)%10];
-//        }
         for (int i = arr.length - 1; i >= 0; --i) {
             tmp[count[(arr[i] / exp) % 10] - 1] = arr[i];
             --count[(arr[i] / exp) % 10];

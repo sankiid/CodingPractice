@@ -22,7 +22,7 @@ public class KnapsackProblem {
     }
 
     private static int fillKnapsack(int[] val, int[] wt, int W) {
-        int[][] tmp = new int[val.length + 1][W + 1];
+        int[][] tmp = new int[wt.length + 1][W + 1];
 
         for (int j = 1; j <= wt.length; ++j) {
             for (int w = 1; w <= W; ++w) {

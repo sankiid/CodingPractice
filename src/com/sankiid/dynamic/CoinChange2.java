@@ -10,7 +10,6 @@ public class CoinChange2 {
 
     public static void main(String[] args) {
         int arr[] = {2, 5, 3};
-//        int c = count(arr, 0, arr.length - 1, 4);
         long c = countOptimized(arr, 7);
         System.out.print(c);
     }
