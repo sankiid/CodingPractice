@@ -30,6 +30,8 @@ public class BitDriver {
 		System.out.println("-----------------------------");
 		System.out.println("count set bits " + BitUtils.bitsets(-2));
 		System.out.println("-----------------------------");
+		System.out.println("multiply " + BitUtils.multiply(2, 11));
+		System.out.println("-----------------------------");
 
 	}
 
