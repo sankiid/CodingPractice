@@ -15,15 +15,22 @@ public class RotateMatrixBy90 {
 	}
 
 	private static void rotate(int[][] mat) {
-		int r = mat.length;
-		int c = mat[0].length;
-		for (int i = 0; i < r / 2; ++i) {
-			for (int j = i; j < c - i - 1; ++j) {
-				int tmp = mat[i][j];
-				mat[i][j] = mat[j][c - 1 - i];
-				mat[j][c - 1 - i] = mat[r - 1 - i][c - 1 - j];
-				mat[r - 1 - i][c - 1 - j] = mat[r - 1 - j][i];
-				mat[r - 1 - j][i] = tmp;
+		int n = mat.length;
+		for (int layer = 0; layer < n / 2; ++layer) {
+			int first = layer;
+			int last = n - layer - 1;
+			for (int i = first; i < last; ++i) {
+				int offset = i - first;
+				// save top
+				int top = mat[first][i];
+				// Left - Top
+				mat[first][i] = mat[last - offset][first];
+				// bootom - left
+				mat[last - offset][first] = mat[last][last - offset];
+				// right - bottom
+				mat[last][last - offset] = mat[i][last];
+				// top - right
+				mat[i][last] = top;
 			}
 		}
 	}

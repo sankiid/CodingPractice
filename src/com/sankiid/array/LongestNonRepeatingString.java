@@ -5,7 +5,7 @@ package com.sankiid.array;
  */
 public class LongestNonRepeatingString {
     public static void main(String[] args) {
-        String s = "ABCDABDEFGCABD";
+        String s = "ABCDABDEFGCABD"; // ABCDEFCGTRJU
         String out = getSubString(s);
         System.out.print(out);
     }
