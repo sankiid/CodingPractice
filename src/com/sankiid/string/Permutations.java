@@ -36,8 +36,17 @@ public class Permutations {
 		}
 		System.out.println("----------------------------------------");
 		for (int i = 1; i <= chars.size(); ++i) {
-			permutationUtils(chars.subList(0, i), count.subList(0, i), new char[arr.length], 0);
+			int size = getSize(count.subList(0, i));
+			permutationUtils(chars.subList(0, i), count.subList(0, i), new char[size], 0);
 		}
+	}
+
+	private static int getSize(List<Integer> subList) {
+		int s = 0;
+		for (Integer i : subList) {
+			s += i;
+		}
+		return s;
 	}
 
 	private static void permutationUtils(List<Character> chars, List<Integer> count, char[] sb, int idx) {

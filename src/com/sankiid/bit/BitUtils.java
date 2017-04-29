@@ -146,5 +146,10 @@ public class BitUtils {
 			return multiply(a << 1, b >> 1);
 		}
 	}
+
+	public static double devide(int i, int j) {
+		double diff = Math.log(i) - Math.log(j);
+		return Math.pow(Math.E, diff);
+	}
 	
 }
