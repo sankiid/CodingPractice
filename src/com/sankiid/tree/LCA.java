@@ -49,10 +49,7 @@ public class LCA {
 		if (root == null)
 			return null;
 
-		if (root.data == n1) {
-			return root;
-		}
-		if (root.data == n2) {
+		if (root.data == n1 || root.data == n2) {
 			return root;
 		}
 		Node left = findLcaRec(root.left, n1, n2);

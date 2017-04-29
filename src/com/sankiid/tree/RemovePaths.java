@@ -16,12 +16,12 @@ public class RemovePaths {
 		root.left.right = new Node<>(5);
 		root.right.left = new Node<>(10);
 		print(root);
-		removePath(root, 14, new int[]{0});
+		removePath(root, 14, new int[] { 0 });
 		System.out.println();
 		print(root);
 	}
 
-	private static Node removePath(Node<Integer> root, int k, int[] sum) {
+	private static Node<Integer> removePath(Node<Integer> root, int k, int[] sum) {
 		if (root == null)
 			return null;
 		int[] ls = new int[1];
@@ -29,18 +29,18 @@ public class RemovePaths {
 		ls[0] = rs[0] = sum[0] + root.data;
 		root.left = removePath(root.left, k, ls);
 		root.right = removePath(root.right, k, rs);
-		sum[0] = ls[0] > rs[0] ? ls[0] : rs[0];
+		sum[0] = Math.max(ls[0], rs[0]);
 		if (sum[0] < k) {
-			root = null;
+			return null;
 		}
 		return root;
 	}
 
-	static void print(Node root) {
+	static void print(Node<Integer> root) {
 		if (root == null)
 			return;
 		print(root.left);
-		System.out.printf("%d ",root.data);
+		System.out.printf("%d ", root.data);
 		print(root.right);
 	}
 

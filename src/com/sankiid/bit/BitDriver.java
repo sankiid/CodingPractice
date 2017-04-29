@@ -32,7 +32,9 @@ public class BitDriver {
 		System.out.println("-----------------------------");
 		System.out.println("multiply " + BitUtils.multiply(2, 11));
 		System.out.println("-----------------------------");
-
+		BitUtils.printBits(3221225472L);
+		BitUtils.printBits(2147483648L);
+		BitUtils.printBits(1073741824L);
 	}
 
 }

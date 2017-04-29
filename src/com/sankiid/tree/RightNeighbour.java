@@ -36,7 +36,6 @@ public class RightNeighbour {
             if (node.right != null) {
                 node.left.neighbour = node.right;
             } else {
-                RightNeighbourNode neighbour = null;
                 RightNeighbourNode tmp = node.neighbour;
                 while (tmp != null) {
                     if (tmp.left != null) {
@@ -51,7 +50,6 @@ public class RightNeighbour {
             }
         }
         if (node.right != null) {
-            RightNeighbourNode neighbour = null;
             RightNeighbourNode tmp = node.neighbour;
             while (tmp != null) {
                 if (tmp.left != null) {

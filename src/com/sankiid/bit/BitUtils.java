@@ -87,6 +87,17 @@ public class BitUtils {
 		System.out.println();
 	}
 
+	public static void printBits(long a) {
+		int b = 1 << 63;
+		for (int i = 63, j = 1; i >= 0; --i, j++) {
+			System.out.print((a & b) != 0 ? 1 : 0);
+			a = a << 1;
+			if (j % 8 == 0) {
+				System.out.print(" ");
+			}
+		}
+		System.out.println();
+	}
 	public static boolean isOppositeSign(int i, int j) {
 		i = i ^ j;
 		return (i & (1 << 31)) != 0;
@@ -135,4 +146,5 @@ public class BitUtils {
 			return multiply(a << 1, b >> 1);
 		}
 	}
+	
 }

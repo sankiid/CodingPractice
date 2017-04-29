@@ -18,11 +18,11 @@ public class TreeType {
 
 	private static boolean isCompletetree(Node<Integer> root) {
 		if(root == null) return true;
-		Queue<Node> queue = new LinkedList<Node>();
+		Queue<Node<Integer>> queue = new LinkedList<Node<Integer>>();
 		queue.add(root);
 		boolean flag = false;
 		while(!queue.isEmpty()){
-			Node node = queue.remove();
+			Node<Integer> node = queue.remove();
 			if(node.left != null && node.right != null){
 				if(flag) return false;
 				queue.add(node.left);
