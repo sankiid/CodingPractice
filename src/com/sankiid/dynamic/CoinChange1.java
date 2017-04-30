@@ -10,7 +10,7 @@ package com.sankiid.dynamic;
  */
 public class CoinChange1 {
 	public static void main(String[] args) {
-		int[] arr = { 2, 3, 5 };
+		int[] arr = { 3, 2, 5 };
 		int n = 7;
 		System.out.print(findMinCoinDenominationsToMakeChange(arr, n));
 	}

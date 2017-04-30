@@ -1,73 +1,54 @@
 
 package com;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
-
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 /**
  * Created by sankiid on 05-03-2017.
  */
 public class Solution {
+
+    private HashMap<Integer,Integer> map = new HashMap<>();
+    private LinkedList<Integer> list = new LinkedList<Integer>();
+    private int cap;
+    public Solution(int capacity) {
+        this.cap = capacity;
+    }
+    
+    public int get(int key) {
+        Integer k = new Integer(key);
+        if(map.containsKey(k)) {
+            Integer value = map.get(k);
+            list.remove(k);
+            list.addFirst(k);
+            return value;
+        } else {
+            return -1;
+        }
+    }
+    
+    public void set(int key, int value) {
+        Integer k = new Integer(key);
+        if(map.containsKey(k)){
+            list.remove(k);
+            list.addFirst(k);
+            map.put(k, value);
+        } else {
+            if(list.size() >= cap){
+                map.remove(list.removeLast());
+            }
+            list.addFirst(k);
+            map.put(k, value);
+        }
+    }
 	public static void main(String args[]) throws Exception {
-		System.out.println(new Solution().convertToTitle(140627));
-	}
-
-	public String convertToTitle(int a) {
-		LinkedList<Integer> list = new LinkedList<Integer>();
-		while (a > 0) {
-			list.addLast(a % 26);
-			a = a / 26;
-		}
-
-		StringBuilder sb = new StringBuilder();
-		for (int j = 0; j < list.size(); ++j) {
-			int n = list.get(j);
-			if (n == 0 && (j + 1) < list.size()) {
-				sb.append('Z');
-				Integer i = list.get(j + 1);
-				int k = j + 1;
-				while (list.get(k).intValue() == 0) {
-					k++;
-				}
-				list.add(k, list.get(k) - 1);
-				list.remove(k + 1);
-				while (k > j + 1) {
-					k--;
-					list.add(k, 25);
-					list.remove(k + 1);
-				}
-			} else if (n != 0) {
-				sb.append((char) ('A' + n - 1));
-			}
-		}
-		return sb.reverse().toString();
-	}
-
-	private static int calculateSum(int n, int m, int sum, int[][] mat, int ii, int jj, int line) {
-		while (sum > 0 && (ii < n && jj >= 0 && ii >= 0 && jj < n) && ii + jj == line) {
-			sum = getAndSetSum(m, sum, mat, ii, jj);
-			sum = getAndSetSum(m, sum, mat, jj, ii);
-			ii++;
-			jj--;
-		}
-		return sum;
-	}
-
-	private static int getAndSetSum(int m, int sum, int[][] mat, int ii, int jj) {
-		if (sum <= 0)
-			return 0;
-		if (sum > m - 1) {
-			mat[ii][jj] += m - 1;
-			sum = sum - m + 1;
-		} else {
-			mat[ii][jj] += sum;
-			sum = 0;
-		}
-		return sum;
+		Solution solution = new Solution(1);
+		solution.set(2, 1);
+		System.out.println(solution.get(2));
+		solution.set(3, 2);
+		System.out.println(solution.get(2));
+		System.out.println(solution.get(3));
+		
 	}
 }
