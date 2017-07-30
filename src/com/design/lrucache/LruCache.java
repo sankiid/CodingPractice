@@ -72,7 +72,7 @@ public class LruCache<K, V> implements ICache<K, V> {
     }
 
     @Override
-    public synchronized V getValue(K key) {
+    public synchronized V get(K key) {
         CacheNode<K, V> node = this.cacheMap.get(key);
         if (node == null) {
             return null;
@@ -92,4 +92,9 @@ public class LruCache<K, V> implements ICache<K, V> {
             tail = null;
         }
     }
+
+	@Override
+	public int size() {
+		return cacheMap.size();
+	}
 }

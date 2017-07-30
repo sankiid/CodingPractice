@@ -11,7 +11,7 @@ public class CoinChange2 {
 
 	public static void main(String[] args) {
 		int arr[] = { 2, 5, 3 };
-		long c = countOptimized(arr, 1);
+		long c = countOptimized(arr, 8);
 		System.out.print(c);
 	}
 
