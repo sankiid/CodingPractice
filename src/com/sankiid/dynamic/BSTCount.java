@@ -11,6 +11,7 @@ public class BSTCount {
 		if (n == 0 || n == 1)
 			return 1;
 		int allSolutions = 0;
+		// Find all BST with root i
 		for (int i = 1; i <= n; ++i) {
 			if (tmp[i - 1] == 0) {
 				tmp[i - 1] = countBst(i - 1, tmp);
