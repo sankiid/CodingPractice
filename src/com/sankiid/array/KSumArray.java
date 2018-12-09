@@ -1,7 +1,8 @@
 package com.sankiid.array;
 
 /**
- * Created by sankiid on 11-03-2017.
+ * Created by sankiid on 11-03-2017. 
+ * Given an array A having positive and negative integers and a number k, find the minimum length sub array of A with sum = k.
  */
 public class KSumArray {
     public static void main(String[] args) {
